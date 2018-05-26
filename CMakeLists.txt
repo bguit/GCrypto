@@ -14,7 +14,7 @@ find_library(OPENSSL_LIBS
         HINTS ${SSL_DIR}/lib)
 
 # Compile
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp GCipher/base_cipher.cpp GCipher/base_cipher.h GCipher/symmetric_cipher.cpp GCipher/symmetric_cipher.h GCipher/block_cipher.cpp GCipher/block_cipher.h GCipher/g_aes.cpp GCipher/g_aes.h GCipher/cipher_mode.cpp GCipher/cipher_mode.h GCipher/ecb_mode.cpp GCipher/ecb_mode.h)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Linking
