@@ -6,20 +6,14 @@
 
 namespace GCipher {
 
-    class SymmetricKey {
-    public:
-        void set_key(const QByteArray &key);
-
-    private:
-        QByteArray key_;
-    };
+    typedef QByteArray SymmetricKey;
 
     class SymmetricCipher {
     public:
-        virtual EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
-        virtual EncryptStatus Decrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
+        //virtual EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
+        //virtual EncryptStatus Decrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
 
-        virtual void set_key(SymmetricKey) = 0;
+        virtual void set_key(SymmetricKey key);
 
     private:
         SymmetricKey key_;

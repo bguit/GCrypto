@@ -5,21 +5,15 @@
 
 namespace GCipher {
 
-    class ECBMode: public CipherMode {
+    class ECB: public CipherMode {
     public:
-        ECBMode(): CipherMode("ECB") {};
-        EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher,
-                              const EncryptStatus& EncryptBlock(const QByteArray&, QByteArray&)) override;
-        EncryptStatus Decrypt(const QByteArray &cipher, QByteArray &plain,
-                              const EncryptStatus& DecryptBlock(const QByteArray&, QByteArray&)) override;
+        ECB() = default;
+
+        EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const override;
+
     private:
 
     };
-
-    typedef ECBMode ECB;
 }
-
-
-
 
 #endif //GCRYPTO_ECB_MODE_H

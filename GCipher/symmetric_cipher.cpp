@@ -2,10 +2,9 @@
 
 namespace GCipher {
 
-    void SymmetricKey::set_key(const QByteArray &key) {
+    void SymmetricCipher::set_key(SymmetricKey key) {
         key_ = key;
     }
-
 }
 
 

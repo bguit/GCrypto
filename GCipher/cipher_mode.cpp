@@ -2,10 +2,8 @@
 
 namespace GCipher {
 
-    QString CipherMode::name() {
-        return name_;
+    void CipherMode::set_cipher(const BlockCipher &block_cipher) {
+
+        block_cipher_ = &block_cipher;
     }
-
 }
-
-

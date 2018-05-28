@@ -1,18 +1,20 @@
 #ifndef GCRYPTO_G_AES_H
 #define GCRYPTO_G_AES_H
 
+#include <QList>
+
 #include "block_cipher.h"
 
 namespace GCipher {
 
     class AES: public BlockCipher {
     public:
-        EncryptStatus EncryptBlock(const QByteArray &plain, QByteArray &cipher) override;
-        EncryptStatus DecryptBlock(const QByteArray &cipher, QByteArray &plain) override;
-    private:
-        SymmetricKey key_;
-    };
+        AES(): BlockCipher(16, {16, 24, 32}) {};
 
+    private:
+        EncryptStatus EncryptBlock_(const byte *plain, byte *cipher) const override;
+        EncryptStatus DecryptBlock_(const byte *cipher, byte *plain) const override;
+    };
 
 }
 
