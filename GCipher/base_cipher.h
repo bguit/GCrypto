@@ -1,5 +1,5 @@
-#ifndef GCRYPTO_BASE_CIPHER_H
-#define GCRYPTO_BASE_CIPHER_H
+#ifndef GCRYPTO_GCIPHER_BASE_H
+#define GCRYPTO_GCIPHER_BASE_H
 
 namespace GCipher {
     typedef unsigned char byte;
@@ -7,4 +7,4 @@ namespace GCipher {
     enum EncryptStatus { kSuccess, kServiceError, kMacError };
 }
 
-#endif //GCRYPTO_BASE_CIPHER_H
+#endif //GCRYPTO_GCIPHER_BASE_H

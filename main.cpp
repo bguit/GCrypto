@@ -1,7 +1,7 @@
 #include <QtCore>
 
-#include "GCipher/g_aes.h"
-#include "GCipher/ecb_mode.h"
+#include "GCipher/Symmetric/Block/Ciphers/g_aes.h"
+#include "GCipher/Symmetric/Block/Modes/ecb.h"
 
 int main() {
 
@@ -9,13 +9,14 @@ int main() {
     GCipher::AES g_aes;
 
     QByteArray key    = QByteArray("2111111111111111");
-    qDebug() << g_aes.set_key(key);
-
+    g_aes.set_key(key);
 
     QByteArray plain  = QByteArray("1111111111111111");
     QByteArray cipher;
 
-    g_aes.Encrypt<GCipher::ECB>(plain, cipher);
+    GMode::ECB g_ecb;
+    g_ecb.set_block_cipher(g_aes);
+    g_ecb.Encrypt(plain, cipher);
 
     qDebug() << cipher.toHex();
     return 0;

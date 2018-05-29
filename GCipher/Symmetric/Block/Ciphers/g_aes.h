@@ -3,13 +3,13 @@
 
 #include <QList>
 
-#include "block_cipher.h"
+#include "../block_cipher.h"
 
 namespace GCipher {
 
-    class AES: public BlockCipher {
+    class AES: public Block {
     public:
-        AES(): BlockCipher(16, {16, 24, 32}) {};
+        AES(): Block(16, {16, 24, 32}) {};
 
     private:
         EncryptStatus EncryptBlock_(const byte *plain, byte *cipher) const override;

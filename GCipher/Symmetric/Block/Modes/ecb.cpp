@@ -1,8 +1,15 @@
-#include "ecb_mode.h"
+#include "ecb.h"
 
-namespace GCipher {
+namespace GMode {
 
+    using namespace GCipher;
     EncryptStatus ECB::Encrypt(const QByteArray &plain, QByteArray &cipher) const {
+
+        if (block_cipher_ == nullptr) {
+                // Error: cipher is not set!
+                return kServiceError;
+        }
+
         if (plain.length() % 16 != 0) return kServiceError;
 
         auto plain_data_ptr = (const byte*)plain.constData();

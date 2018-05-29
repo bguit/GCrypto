@@ -13,9 +13,30 @@ find_library(OPENSSL_LIBS
         NAMES lcrypto lssl
         HINTS ${SSL_DIR}/lib)
 
-# Compile
-set(SOURCE_FILES main.cpp GCipher/base_cipher.cpp GCipher/base_cipher.h GCipher/symmetric_cipher.cpp GCipher/symmetric_cipher.h GCipher/block_cipher.cpp GCipher/block_cipher.h GCipher/g_aes.cpp GCipher/g_aes.h GCipher/cipher_mode.cpp GCipher/cipher_mode.h GCipher/ecb_mode.cpp GCipher/ecb_mode.h)
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+# GCipher
+set (GCipherPath GCipher)
+set (GCipherFiles ${GCipherPath}/base_cipher.cpp ${GCipherPath}/base_cipher.h)
+
+set (GSymmetricPath ${GCipherPath}/Symmetric)
+set (GSymmetricFiles ${GSymmetricPath}/symmetric_cipher.cpp ${GSymmetricPath}/symmetric_cipher.h)
+
+set (GBlockPath ${GSymmetricPath}/Block)
+set (GBlockFiles ${GBlockPath}/block_cipher.cpp ${GBlockPath}/block_cipher.h)
+
+set (CiphersPath ${GBlockPath}/Ciphers)
+set (CiphersFiles ${CiphersPath}/g_aes.cpp ${CiphersPath}/g_aes.h)
+
+# Modes
+set (ModesPath ${GBlockPath}/Modes)
+set (ModesBaseFiles ${ModesPath}/cipher_mode.cpp ${ModesPath}/cipher_mode.cpp)
+set (ModesFiles ${ModesPath}/ecb.h ${ModesPath}/ecb.cpp ${ModesPath}/cbc.h ${ModesPath}/cbc.cpp)
+
+# Source
+set(SourceFiles main.cpp )
+add_executable(${PROJECT_NAME}
+        ${SourceFiles} ${GCipherFiles} ${GSymmetricFiles} ${GBlockFiles} ${CiphersFiles}
+        ${ModesBaseFiles} ${ModesFiles} ${} ${})
+# ---
 
 # Linking
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
