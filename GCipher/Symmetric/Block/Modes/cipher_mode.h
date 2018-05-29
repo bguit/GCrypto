@@ -2,8 +2,8 @@
 #define GCRYPTO_GMODE_CIPHER_MODE_H
 
 #include <QByteArray>
-#include "../block_cipher.h"
-#include "../../symmetric_cipher.h"
+#include <Core/GError/errors.h>
+#include "GCipher/Symmetric/Block/block_cipher.h"
 
 namespace GMode {
 
@@ -15,14 +15,7 @@ namespace GMode {
 
         virtual GCipher::EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
 
-        bool set_block_cipher(const GCipher::Block &block_cipher) {
-            if (block_cipher.key().isEmpty()) {
-                // qDebug() << "key is empty";
-                return false;
-            }
-            block_cipher_ = &block_cipher;
-            return true;
-        }
+        bool set_block_cipher(const GCipher::Block &block_cipher);
 
     protected:
         const GCipher::Block* block_cipher_{nullptr};

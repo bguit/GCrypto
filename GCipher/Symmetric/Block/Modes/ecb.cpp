@@ -6,10 +6,11 @@ namespace GMode {
     EncryptStatus ECB::Encrypt(const QByteArray &plain, QByteArray &cipher) const {
 
         if (block_cipher_ == nullptr) {
-                // Error: cipher is not set!
-                return kServiceError;
+            G_FATAL("Cipher is not set");
+            return kServiceError;
         }
 
+        // TODO: Update with padding
         if (plain.length() % 16 != 0) return kServiceError;
 
         auto plain_data_ptr = (const byte*)plain.constData();

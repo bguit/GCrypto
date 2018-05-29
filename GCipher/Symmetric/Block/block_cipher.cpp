@@ -1,4 +1,5 @@
 #include "block_cipher.h"
+#include "Core/GError/errors.h"
 
 namespace GCipher {
 
@@ -7,7 +8,7 @@ namespace GCipher {
             key_ = key;
             return true;
         }
-
+        G_FATAL("This key length is not available for this Cipher!");
         return false;
     }
 

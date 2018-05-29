@@ -1,10 +1,11 @@
-#include "g_aes.h"
+#include "aes.h"
+#include "Core/GError/errors.h"
 
 namespace GCipher {
 
     EncryptStatus AES::EncryptBlock_(const byte *plain, byte *cipher) const {
         if (key().isEmpty()) {
-            //qDebug() << "Key is Empty!";
+            G_FATAL("Key is Empty!");
             return kServiceError;
         }
 
@@ -17,7 +18,7 @@ namespace GCipher {
 
     EncryptStatus AES::DecryptBlock_(const byte *cipher, byte *plain) const {
         if (key().isEmpty()) {
-            //qDebug() << "Key is Empty!";
+            G_FATAL("Key is Empty!");
             return kServiceError;
         }
 
