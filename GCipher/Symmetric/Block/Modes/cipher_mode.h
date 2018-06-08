@@ -5,7 +5,7 @@
 #include <Core/GError/errors.h>
 #include "GCipher/Symmetric/Block/block_cipher.h"
 
-namespace GMode {
+namespace GCipher {
 
     class CipherMode {
         // TODO: ADD Padding!
@@ -13,12 +13,12 @@ namespace GMode {
     public:
         CipherMode() = default;
 
-        virtual GCipher::EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
+        virtual EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const = 0;
 
-        bool set_block_cipher(const GCipher::Block &block_cipher);
+        bool set_block_cipher(const Block &block_cipher);
 
     protected:
-        const GCipher::Block* block_cipher_{nullptr};
+        const Block* block_cipher_{nullptr};
     };
 }
 

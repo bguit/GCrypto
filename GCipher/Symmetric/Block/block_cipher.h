@@ -15,13 +15,17 @@ namespace GCipher {
                 available_key_lengths_(key_lengths_list) {};
 
         uint32_t block_length() const { return block_length_; };
-        virtual EncryptStatus EncryptBlock_(const byte *plain, byte *cipher) const = 0;
-        virtual EncryptStatus DecryptBlock_(const byte *cipher, byte *plain) const = 0;
+        virtual EncryptStatus EncryptBlock_(const byte *plain,
+                                            const uint32_t* full_key, uint32_t user_key_length,
+                                            byte *cipher) const = 0;
+        virtual EncryptStatus DecryptBlock_(const byte *cipher, const uint32_t* full_key, byte *plain) const = 0;
 
-        // --- Work with key
-        QByteArray key() const { return key_; };
-        bool IsKeyLengthAvailable(uint32_t key_length) const;
-        bool set_key(const SymmetricKey &key) override;
+        virtual bool KeyWrap(const QByteArray &user_key, QByteArray &full_key) const = 0;
+
+        QByteArray  key() const { return key_; };
+        bool        set_key(const SymmetricKey &key) override;
+
+        bool        IsKeyLengthAvailable(uint32_t key_length) const;
 
         private:
         QList<uint32_t> available_key_lengths_;

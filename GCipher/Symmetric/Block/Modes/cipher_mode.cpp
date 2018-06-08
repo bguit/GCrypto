@@ -1,6 +1,6 @@
 #include "cipher_mode.h"
 
-namespace GMode {
+namespace GCipher {
 
     bool CipherMode::set_block_cipher(const GCipher::Block &block_cipher) {
         if (block_cipher.key().isEmpty()) {

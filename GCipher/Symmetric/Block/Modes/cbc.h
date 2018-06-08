@@ -3,7 +3,7 @@
 
 #include "cipher_mode.h"
 
-namespace GMode {
+namespace GCipher {
     class CBC: public CipherMode {
     public:
         CBC() {
@@ -11,14 +11,11 @@ namespace GMode {
         };
         bool set_iv(const QByteArray& iv);
 
-        GCipher::EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const override;
+        EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const override;
 
     private:
         QByteArray iv_;
     };
 }
-
-
-
 
 #endif //GCRYPTO_GMODE_CBC_H

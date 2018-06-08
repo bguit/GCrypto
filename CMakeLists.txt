@@ -9,11 +9,11 @@ include_directories(${PROJECT_SOURCE_DIR})
 find_package(Qt5Core REQUIRED)
 
 # Add OpenSSL
-set(SSL_DIR /usr/local/ssl)
-include_directories(${SSL_DIR}/include)
-find_library(OPENSSL_LIBS
-        NAMES lcrypto lssl
-        HINTS ${SSL_DIR}/lib)
+#set(SSL_DIR /usr/local/ssl) # Linux
+#include_directories(${SSL_DIR}/include)
+#find_library(OPENSSL_LIBS
+#        NAMES lcrypto lssl
+#        HINTS ${SSL_DIR}/lib)
 
 # GError
 set (GErrorPath Core/GError)
@@ -33,11 +33,14 @@ set (GBlockFiles ${GBlockPath}/block_cipher.cpp ${GBlockPath}/block_cipher.h)
 set (CiphersPath ${GBlockPath}/Ciphers)
 set (CiphersFiles ${CiphersPath}/aes.cpp ${CiphersPath}/aes.h)
 
+set (CiphersCorePath ${CiphersPath}/Core)
+set (CiphersCoreFiles ${CiphersCorePath}/aes_core.h ${CiphersCorePath}/aes_core.cpp ${CiphersCorePath}/aes_core_local.h)
+
 set (ModesPath ${GBlockPath}/Modes)
 set (ModesBaseFiles ${ModesPath}/cipher_mode.cpp ${ModesPath}/cipher_mode.cpp)
 set (ModesFiles ${ModesBaseFiles} ${ModesPath}/ecb.h ${ModesPath}/ecb.cpp ${ModesPath}/cbc.h ${ModesPath}/cbc.cpp)
 
-set (GCipherFiles ${GCipherBaseFiles} ${GSymmetricFiles} ${GBlockFiles} ${CiphersFiles} ${ModesFiles} ${} ${} ${})
+set (GCipherFiles ${GCipherBaseFiles} ${GSymmetricFiles} ${GBlockFiles} ${CiphersFiles} ${ModesFiles} ${CiphersCoreFiles} ${} ${})
 
 # Source
 set(SourceFiles main.cpp )
@@ -46,4 +49,4 @@ add_executable(${PROJECT_NAME} ${SourceFiles} ${GCipherFiles} ${GErrorFiles} ${}
 
 # Linking
 target_link_libraries(${PROJECT_NAME} Qt5::Core)
-target_link_libraries(${PROJECT_NAME} ${SSL_DIR})
+#target_link_libraries(${PROJECT_NAME} ${SSL_DIR})

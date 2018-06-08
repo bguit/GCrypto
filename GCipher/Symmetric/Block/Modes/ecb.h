@@ -3,13 +3,13 @@
 
 #include "cipher_mode.h"
 
-namespace GMode {
+namespace GCipher {
 
     class ECB: public CipherMode {
     public:
         ECB() = default;
 
-        GCipher::EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const override;
+        EncryptStatus Encrypt(const QByteArray &plain, QByteArray &cipher) const override;
 
     private:
 
